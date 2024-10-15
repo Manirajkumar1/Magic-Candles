@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import gsap from 'gsap'
 import { Link } from 'react-router-dom'
 import homepng from '../../assets/home.png'
 import img2 from '../../assets/page2img.png'
@@ -6,16 +7,20 @@ import img3 from '../../assets/page2img2.jpg'
 import { FaEarthAsia, FaLeaf , FaStopwatch , FaGripfire } from "react-icons/fa6";
 
 const Home = () => {
+  useEffect(() => {
+    gsap.fromTo(
+      '#hero-text', 
+      { x: -100, opacity: 0 }, 
+      { x: 0, opacity: 1, duration: 1.5, delay: 1,  }
+    );
+  },[])
   return (
-    <div>
-      <div className='flex-col p-4 '>
-      {/* img section */}
-      <Link id='hero-img' className=' lg:w-1/2'>
-      <img className='' src={homepng} alt="img" />
-      </Link>
+    <>
+    <div className='mb-10'>
+      <div className='flex flex-col lg:flex-row p-4 relative lg:mb-60 '>
       {/* text */}
-      <div id='hero-text' className='flex  bg-stone-600 text-white font-semibold p-4'>
-        <div className='' >
+      <div id='hero-text' className=' hero-text lg:w-full   lg:mt-[300px] lg:ml-14 lg:mr-16 flex flex-col  bg-stone-600 text-white font-semibold p-4 '>
+        <div className='lg:w-[500px] lg:ml-40 ' >
           <h1 className='text-[20px] text-center'>Magic</h1>
           <h3 className='font-bold text-[15px] text-center'>Natural soy candles</h3>
           <p className='text-center text-[15px] leading-7'>
@@ -24,9 +29,15 @@ const Home = () => {
           </p>
         </div>
       </div>
+      {/* img section */}
+      <Link id='hero-img' className='lg:absolute lg:right-40'>
+      <img className='lg:h-[600px] md:w-full' src={homepng} alt="img" />
+      </Link>
     </div>
+
     {/* page 2 */}
-    <div id='pagetwo' className='p-4'>
+
+    <div id='pagetwo' className='p-4 '>
       {/* text */}
       <div className=''>
         <h2 className='text-[20px] font-semibold'>Indulge yourself with a little pleasure....</h2>
@@ -51,16 +62,16 @@ const Home = () => {
         </div>
       </div>
       {/* image  */}
-      <Link className='flex justify-center'>
-      <img className='mt-8 flex' src={img2} alt="" />
+      <Link className='flex justify-center '>
+      <img className='mt-8 flex ' src={img2} alt="" />
       </Link>
     </div>
     {/* text */}
-    <div className='p-4'>
+    <div className='p-4 relative'>
       <h1 className='text-[20px] font-semibold py-3'>
       Healthy, natural, organic....
       </h1>
-      <div className='flex-col '>
+      <div className='flex-col lg:absolute lg:left-10 lg:mt-10 lg:w-[500px]'>
       <p className='py-3'>
       Our soy candles are high-quality products made from natural soy wax, which is eco-friendly and biodegradable. They are an ideal alternative to ordinary candles, which emit toxic substances.
       </p>
@@ -73,10 +84,12 @@ const Home = () => {
       </p>
       </div>
       <Link>
-      <img src={img3} alt="img" />
+      <img className='lg:h-[600px] lg:w-full' src={img3} alt="img" />
       </Link>
     </div>
     </div>
+  
+    </>
   )
 }
 
